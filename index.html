@@ -17,24 +17,81 @@
 
 <body>
     <main id="app">
-
+        <div v-if='showProduct'>
+            <div v-for="product in lessons">
+                <!-- product info -->
+                <p>{{product.id}}</p>
+                <p>{{product.title}}</p>
+                <p>{{product.instructor}}</p>
+                <p>{{product.duration}}</p>
+                <p>{{product.level}}</p>
+                <p>{{product.subject}}</p>
+                <p>{{product.location}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.spaces}}</p>
+                <p>{{product.rating}}</p>
+                <!-- add to cart button -->
+                <button v-on:click='addToCart(product)' v-if='canAddToCart()'>Add to cart</button>
+                <button v-on:click='removeProduct(product)' v-if='canRemoveFromCart()'>X</button>
+            </div>
+        </div>
     </main>
+    <script src="lessons.js"></script>
     <script>
         // mount VUE instance
         var app = new Vue({
             el: '#app',
             // data object
             data: {
-
+                showProduct: true,
+                lessons: lessons,
+                // cart container array
+                cart: [],
             },
             // vue js app methods
             methods: {
                 //this method gets all courses available in app
                 showAllCourses() {
 
+                },
+                // add to cart method
+                addToCart(lessons) {
+                    // push the product id to cart so as to search product by id and display it in cart page
+                    this.cart.push(lessons.id);
+                },
+                removeProduct() {
+                    // remove product from cart container array
+                    this.cart.pop(lessons.id);
+                },
+                // check for spaces
+                checkSpaceCount(spaces) {
+                    spaceCount = lessons.spaces;
+                    for (i = 0; i < cart.length(); i++) {
+                        if (this.cart[i].spaces <= 0) {
+
+                        }
+                    }
+                },
+                // check if product can be added to cart
+                canAddToCart(lessons) {
+                    this.lessons.spaces > this.cartCount(lessons.spaces)
                 }
-            }
+
+            },
             // computed values object
+            computed: {
+                // check if lessons array is empty
+                showProduct() {
+                    return this.showProduct = this.showProduct ? true : false;
+                },
+                // get cart length
+                cartSize() {
+                    return this.cart.length;
+                },
+                canRemoveFromCart() {
+                    return cartSize > 0;
+                }
+            },
         }
         );
     </script>
