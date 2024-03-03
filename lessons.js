@@ -9,7 +9,7 @@ const lessons = [
         "subject": "Programming",
         "location": "Online",
         "price": 0,
-        "spaces": 50,
+        "spaces": 2,
         "rating": 5
     },
     {

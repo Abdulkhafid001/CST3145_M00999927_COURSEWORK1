@@ -31,7 +31,7 @@
                 <p>{{product.spaces}}</p>
                 <!-- <p>{{product.rating}}</p> -->
                 <!-- add to cart button -->
-                <button v-on:click='addToCart(product)' :disabled="product.spaces === 0">Add to cart</button>
+                <button v-on:click='addToCart(product)' :disabled="lesson.spaces === 0">Add to cart</button> <!-- 1% -->
                 <button v-on:click='removeProduct(product)'>X</button>
             </div>
         </div>
@@ -51,16 +51,15 @@
             // vue js app methods
             methods: {
                 // add to cart method
-                addToCart(lesson) {
+                addToCart(lessons) {
                     // push the product id to cart so as to search product by id and display it in cart page
-                    this.cart.push(lesson.id);
-                    // take out one space from total lessons space
-                    lesson.spaces -= 1;
-                    alert(lesson.spaces);
+                    this.cart.push(lessons.id);
+                    // reduce lessons total space 1%
+                    lessons.spaces - 1;
                 },
-                removeProduct(lesson) {
+                removeProduct() {
                     // remove product from cart container array
-                    this.cart.pop(lesson.id);
+                    this.cart.pop(lessons.id);
                 },
                 // check for spaces
                 // you cannot add a course more the number of space capacity it has. 
