@@ -17,22 +17,31 @@
 
 <body>
     <main id="app">
-        <div>
-            <div v-for="product in lessons">
-                <!-- product info -->
-                <p>{{product.id}}</p>
-                <p>{{product.title}}</p>
-                <!-- <p>{{product.instructor}}</p>
-                <p>{{product.duration}}</p>
-                <p>{{product.level}}</p>
-                <p>{{product.subject}}</p>
-                <p>{{product.location}}</p>
-                <p>{{product.price}}</p> -->
-                <p>{{product.spaces}}</p>
-                <!-- <p>{{product.rating}}</p> -->
-                <!-- add to cart button -->
-                <button v-on:click='addToCart(product)' :disabled="product.spaces === 0">Add to cart</button>
-                <button v-on:click='removeProduct(product)'>X</button>
+        <div class="container">
+            <div v-if="">
+                <div v-for="product in lessons">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <p>{{product.id}}</p>
+                            <p>{{product.title}}</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- <p>{{product.instructor}}</p>
+                            <p>{{product.duration}}</p>
+                            <p>{{product.level}}</p>
+                            <p>{{product.subject}}</p>
+                            <p>{{product.location}}</p>
+                            <p>{{product.price}}</p> -->
+                            <p>Spaces: {{product.spaces}}</p>
+                            <!-- <p>{{product.rating}}</p> -->
+                            <!-- add to cart button -->
+                            <button v-on:click='addToCart(product)' :disabled="product.spaces === 0">Add to
+                                cart</button>
+                            <button v-on:click='removeProduct(product)'>X</button>
+                        </div>
+                        <div class="card-footer"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -56,11 +65,12 @@
                     this.cart.push(lesson.id);
                     // take out one space from total lessons space
                     lesson.spaces -= 1;
-                    alert(lesson.spaces);
                 },
                 removeProduct(lesson) {
                     // remove product from cart container array
                     this.cart.pop(lesson.id);
+                    // when a product is removed from cart add one back to space
+                    lesson.spaces += 1;
                 },
                 // check for spaces
                 // you cannot add a course more the number of space capacity it has. 
@@ -74,19 +84,21 @@
                     }
                     return itemCount;
                 },
-                // check if product can be added to cart
-                canAddToCart(lessons) {
-                    return this.lessons.spaces > this.checkItemCount(lessons.id);
-                }
             },
             // computed values object
             computed: {
-
                 // get cart length
                 cartSize: function () {
                     return this.cart.length || 0;
                 },
-
+                // check if product can be added to cart
+                canAddToCart(lessons) {
+                    return this.lessons.spaces > this.checkItemCount(lessons.id);
+                },
+                // check if to show checkout page
+                showCheckout() {
+                    this.showProduct = this.showProduct ? false : true;
+                },
             },
         }
         );
