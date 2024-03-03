@@ -22,17 +22,17 @@
                 <!-- product info -->
                 <p>{{product.id}}</p>
                 <p>{{product.title}}</p>
-                <p>{{product.instructor}}</p>
+                <!-- <p>{{product.instructor}}</p>
                 <p>{{product.duration}}</p>
                 <p>{{product.level}}</p>
                 <p>{{product.subject}}</p>
                 <p>{{product.location}}</p>
-                <p>{{product.price}}</p>
+                <p>{{product.price}}</p> -->
                 <p>{{product.spaces}}</p>
-                <p>{{product.rating}}</p>
+                <!-- <p>{{product.rating}}</p> -->
                 <!-- add to cart button -->
-                <button v-on:click='addToCart(product)' v-if='canAddToCart()'>Add to cart</button>
-                <button v-on:click='removeProduct(product)' v-if='canRemoveFromCart()'>X</button>
+                <button v-on:click='addToCart(product)'>Add to cart</button>
+                <button v-on:click='removeProduct(product)'>X</button>
             </div>
         </div>
     </main>
@@ -58,25 +58,28 @@
                 addToCart(lessons) {
                     // push the product id to cart so as to search product by id and display it in cart page
                     this.cart.push(lessons.id);
+
                 },
                 removeProduct() {
                     // remove product from cart container array
                     this.cart.pop(lessons.id);
                 },
                 // check for spaces
-                checkSpaceCount(spaces) {
-                    spaceCount = lessons.spaces;
-                    for (i = 0; i < cart.length(); i++) {
-                        if (this.cart[i].spaces <= 0) {
-
+                // you cannot add a course more the number of space capacity it has. 
+                checkItemCount(id) {
+                    itemCount = 0;
+                    for (i = 0; i < this.cart.length; i++) {
+                        // check for current instance of is
+                        if (this.cart[i] === id) {
+                            itemCount += 1;
                         }
                     }
+                    return itemCount;
                 },
                 // check if product can be added to cart
                 canAddToCart(lessons) {
-                    this.lessons.spaces > this.cartCount(lessons.spaces)
+                    return this.lessons.spaces > this.checkItemCount(lessons.id);
                 }
-
             },
             // computed values object
             computed: {
@@ -85,12 +88,10 @@
                     return this.showProduct = this.showProduct ? true : false;
                 },
                 // get cart length
-                cartSize() {
-                    return this.cart.length;
+                cartSize: function () {
+                    return this.cart.length || 0;
                 },
-                canRemoveFromCart() {
-                    return cartSize > 0;
-                }
+
             },
         }
         );
