@@ -8,7 +8,7 @@ const lessons = [
         "level": "Beginner",
         "subject": "Programming",
         "location": "Online",
-        "price": 0,
+        "price": 100,
         "spaces": 2,
         "rating": 5
     },
