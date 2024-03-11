@@ -31,7 +31,8 @@
 				<div class="d-flex align-items-end gap-3 flex-wrap">
 
 					<div>
-						<input type="text" class="form-control" v-model="searchTerm" placeholder="search for a lesson...">
+						<input type="text" class="form-control" v-model="searchTerm"
+							placeholder="search for a lesson...">
 					</div>
 
 
@@ -87,35 +88,36 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- cart and checkout -->
 			<div class="container" v-else>
-				<div v-for="item in cart">
-					<div class="card">
-						<div class="card-header">
-							<p></p>{{item.lesson.title}}</p>
-							<p>{{item.amount}}</p>
-							<button></button>
+				<div class="row">
+					<div class="col-sm-6">
+						<div v-for="item in cart">
+							<div class="card p-5 border border-success">
+								<p></p>Title: {{item.lesson.title}}</p>
+								<p>quantity: {{item.amount}}</p>
+								<button class="btn btn-danger" v-on:click='removeProduct(item.lesson)'>x</button>
+							</div>
 						</div>
 					</div>
 				</div>
 				<!-- checkout form -->
+				<!-- the checkout is part of the shopping cart page (1%). -->
 				<div>
 					<form>
 						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">Name</label>
-							<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+							<label for="" class="form-label">Name</label>
+							<input type="text" v-model="username" class="form-control">
 							<div id="emailHelp" class="form-text">We'll never share your name with anyone else.</div>
 						</div>
 						<div class="mb-3">
-							<label for="exampleInputPassword1" class="form-label">Phone</label>
-							<input type="text" class="form-control" id="exampleInputPassword1">
+							<label for="" class="form-label">Phone</label>
+							<input type="text" v-model="phonenumber" class="form-control">
 						</div>
-						<div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">Check me out</label>
-						</div>
-						<button type="submit" onclick="alert('Order completed!')" class="btn btn-primary">checkout</button>
+						<!-- the “checkout” button is always visible and only enabled after valid “Name” and “Phone” are provided (1%). -->
+						<button type="submit" onclick="alert('Order completed!')"
+							class="btn btn-primary">checkout</button>
 					</form>
 				</div>
 			</div>
@@ -133,6 +135,9 @@
 				cart: [],
 				// search term to be bounded from model
 				searchTerm: '',
+				//a user must provide “Name” and “Phone number” before can click on the checkout button (1%)
+				username: '',
+				phonenumber:'',
 				filteredLessons: [],
 				sortAttribute: 'subject',
 				sortOrder: 'asc',
