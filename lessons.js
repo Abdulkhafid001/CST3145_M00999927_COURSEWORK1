@@ -3,14 +3,12 @@ const lessons = [
     {
         "id": 101,
         "title": "Introduction to JavaScript",
-        "instructor": "John Doe",
-        "duration": "2 hours",
         "level": "Beginner",
         "subject": "Programming",
         "location": "Online",
         "price": 100,
         "spaces": 2,
-        "rating": 5
+        "icon": "bi bi-book"
     },
     {
         "id": 102,
@@ -22,7 +20,7 @@ const lessons = [
         "location": "Online",
         "price": 20,
         "spaces": 30,
-        "rating": 5
+        "icon": "bi bi-facebook"
     },
     {
         "id": 103,
@@ -34,7 +32,8 @@ const lessons = [
         "location": "In-Person",
         "price": 30,
         "spaces": 20,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-pencil"
     },
     {
         "id": 104,
@@ -46,7 +45,8 @@ const lessons = [
         "location": "Online",
         "price": 25,
         "spaces": 40,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-facebook"
     },
     {
         "id": 105,
@@ -58,7 +58,8 @@ const lessons = [
         "location": "In-Person",
         "price": 30,
         "spaces": 15,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-mortarboard"
     },
     {
         "id": 106,
@@ -70,7 +71,8 @@ const lessons = [
         "location": "Online",
         "price": 20,
         "spaces": 25,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-speedometer2"
     },
     {
         "id": 107,
@@ -82,7 +84,8 @@ const lessons = [
         "location": "In-Person",
         "price": 25,
         "spaces": 20,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-hospital"
     },
     {
         "id": 108,
@@ -94,7 +97,8 @@ const lessons = [
         "location": "Online",
         "price": 35,
         "spaces": 15,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-bank"
     },
     {
         "id": 109,
@@ -106,7 +110,8 @@ const lessons = [
         "location": "In-Person",
         "price": 30,
         "spaces": 25,
-        "rating": 5
+        "rating": 5,
+        "icon": "bi bi-shop"
     },
     {
         "id": 110,
@@ -118,7 +123,8 @@ const lessons = [
         "location": "Online",
         "price": 20,
         "spaces": 30,
-        "rating": 5
+        "rating": 5,
+        "icons": "bi bi-shop"
     },
 ];
 
