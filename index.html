@@ -116,7 +116,7 @@
 							<input type="text" v-model="phonenumber" class="form-control">
 						</div>
 						<!-- the “checkout” button is always visible and only enabled after valid “Name” and “Phone” are provided (1%). -->
-						<button type="submit" onclick="alert('Order completed!')"
+						<button type="submit" v-bind:disabled="!validateUserCredentials" onclick="alert('Order completed!')"
 							class="btn btn-primary">checkout</button>
 					</form>
 				</div>
@@ -137,7 +137,7 @@
 				searchTerm: '',
 				//a user must provide “Name” and “Phone number” before can click on the checkout button (1%)
 				username: '',
-				phonenumber:'',
+				phonenumber: '',
 				filteredLessons: [],
 				sortAttribute: 'subject',
 				sortOrder: 'asc',
@@ -201,6 +201,7 @@
 					this.showProduct = this.showProduct ? false : true;
 				},
 
+
 			},
 			// computed values object
 			computed: {
@@ -234,6 +235,10 @@
 				canAddToCart(lessons) {
 					return this.lessons.spaces > this.checkItemCount(lessons.id);
 				},
+				// function to validate phone number and username input field values
+				validateUserCredentials() {
+					return /^[a-zA-Z]+$/.test(this.username) && /^\d+$/.test(this.phonenumber)
+				}
 
 			},
 		}
