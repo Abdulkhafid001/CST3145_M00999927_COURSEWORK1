@@ -39,6 +39,7 @@
 					<div>
 						<label for="sortAttribute">Sort By:</label>
 						<select v-model="sortAttribute" class="form-select">
+							<option value="title">Title</option>
 							<option value="subject">Subject</option>
 							<option value="location">Location</option>
 							<option value="price">Price</option>
@@ -60,21 +61,16 @@
 				<div class="row">
 					<div class="col-sm-4" v-for="product in sortLessons">
 						<div class="card mb-3 rounded-0 border border-success-subtle">
-							<div class="card-header">
-								<p>id: {{product.id}}</p>
-								<p>title: {{product.title}}</p>
+							<div class="card-header d-flex">
+								<div>
+									<p>subject: {{product.subject}}</p>
+									<h5>title: {{product.title}}</h5>
+								</div>
+								<i :class="product.icon" class="fs-1 ms-auto"></i>
 							</div>
 							<div class="card-body">
-								<p>price: {{product.price}}</p>
+								<p>price: {{product.price}} AED</p>
 								<p>Spaces: {{product.spaces}}</p>
-								<!-- <p>{{product.instructor}}</p>
-                            <p>{{product.duration}}</p>
-                            <p>{{product.level}}</p>
-                            <p>{{product.subject}}</p>
-                            <p>{{product.location}}</p>
-                            
-                           
-                            <p>{{product.rating}}</p> -->
 							</div>
 							<div class="card-footer">
 								<!-- add to cart button -->
@@ -90,15 +86,24 @@
 			</div>
 
 			<!-- cart and checkout -->
-			<div class="container" v-else>
+			<div class="container mt-4" v-else>
 				<div class="row">
-					<div class="col-sm-6">
-						<div v-for="item in cart">
-							<div class="card p-5 border border-success">
-								<p></p>Title: {{item.lesson.title}}</p>
-								<p>quantity: {{item.amount}}</p>
-								<button class="btn btn-danger" v-on:click='removeProduct(item.lesson)'>x</button>
-							</div>
+					<div class="col-sm-8 border rounded-3">
+						<div v-for="item in cart " class="border-bottom">
+								<div class="col-sm-12  mb-4 p-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<i :class="item.lesson.icon" class="display-1 ms-auto"></i>
+										</div>
+										<div class="col-sm-4">
+											<p></p>Title: {{item.lesson.title}}</p>
+											<p>quantity: {{item.amount}}</p>
+										</div>
+										<div class="col-sm-4">
+											<p>price: {{item.lesson.price}}</p>
+										</div>
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -116,7 +121,7 @@
 							<input type="text" v-model="phonenumber" class="form-control">
 						</div>
 						<!-- the “checkout” button is always visible and only enabled after valid “Name” and “Phone” are provided (1%). -->
-						<button type="submit" v-bind:disabled="!validateUserCredentials" onclick="alert('Order completed!')"
+						<button type="submit" onclick="alert('Order completed!')"
 							class="btn btn-primary">checkout</button>
 					</form>
 				</div>
@@ -137,11 +142,12 @@
 				searchTerm: '',
 				//a user must provide “Name” and “Phone number” before can click on the checkout button (1%)
 				username: '',
-				phonenumber: '',
+				phonenumber:'',
 				filteredLessons: [],
 				sortAttribute: 'subject',
 				sortOrder: 'asc',
 				sortedLessons: [],
+
 			},
 			// vue js app methods
 			methods: {
