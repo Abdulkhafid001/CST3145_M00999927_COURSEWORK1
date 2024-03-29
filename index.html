@@ -24,7 +24,7 @@
 
 			<div class="d-flex">
 				<button class="btn btn-primary fs-3 p-3 rounded-circle ms-auto " v-on:click="showCheckOut"
-					:disabled="!cartSize > 0">{{cartSize}} <i class="bi bi-bag-plus"></i></button>
+					:disabled="!cartSize > 0 && showProduct">{{cartSize}} <i class="bi bi-bag-plus"></i></button>
 			</div>
 
 			<div class="container" v-if="showProduct">
@@ -99,6 +99,8 @@
 									<div class="col-sm-4">
 										<p></p>Title: {{item.lesson.title}}</p>
 										<p>quantity: {{item.amount}}</p>
+										<!-- remove product from cart button -->
+										<button class="btn btn-danger rounded-0" v-on:click='removeProduct(item.lesson)'>X</button>
 									</div>
 									<div class="col-sm-4">
 										<p>price: {{item.lesson.price}}</p>
