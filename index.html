@@ -87,7 +87,7 @@
 
 			<!-- cart and checkout -->
 			<div class="container mt-4" v-else>
-				<div class="row">
+				<div class="row g-3">
 					<div class="col-sm-8 border rounded-3">
 						<div v-for="item in cart " class="border-bottom">
 								<div class="col-sm-12  mb-4 p-3">
@@ -106,25 +106,32 @@
 								</div>
 						</div>
 					</div>
+					<div class="col-sm-4">
+						<div class="container">
+							<div class="row justify-content-center">
+							  <div class="col-md-12">
+								<div class="card">
+								  <div class="card-body">
+									<h5 class="card-title">User Information</h5>
+									<form>
+									  <div class="mb-3">
+										<label for="username" class="form-label">Username</label>
+										<input type="text" v-model="username" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+									  </div>
+									  <div class="mb-3">
+										<label for="phone" class="form-label">Phone Number</label>
+										<input type="tel" v-model="phonenumber" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+									  </div>
+									  <button type="submit" class="btn btn-primary" :disabled="!validateUserCredentials" onclick="alert('Order completed!')">Submit</button>
+									</form>
+								  </div>
+								</div>
+							  </div>
+							</div>
+						  </div>
+					</div>
 				</div>
-				<!-- checkout form -->
-				<!-- the checkout is part of the shopping cart page (1%). -->
-				<div>
-					<form>
-						<div class="mb-3">
-							<label for="" class="form-label">Name</label>
-							<input type="text" v-model="username" class="form-control">
-							<div id="emailHelp" class="form-text">We'll never share your name with anyone else.</div>
-						</div>
-						<div class="mb-3">
-							<label for="" class="form-label">Phone</label>
-							<input type="text" v-model="phonenumber" class="form-control">
-						</div>
-						<!-- the “checkout” button is always visible and only enabled after valid “Name” and “Phone” are provided (1%). -->
-						<button type="submit" onclick="alert('Order completed!')"
-							class="btn btn-primary">checkout</button>
-					</form>
-				</div>
+
 			</div>
 	</main>
 	<script src="lessons.js"></script>
@@ -142,7 +149,7 @@
 				searchTerm: '',
 				//a user must provide “Name” and “Phone number” before can click on the checkout button (1%)
 				username: '',
-				phonenumber:'',
+				phonenumber: '',
 				filteredLessons: [],
 				sortAttribute: 'subject',
 				sortOrder: 'asc',
